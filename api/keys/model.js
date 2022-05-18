@@ -1,16 +1,16 @@
 const db = require('../data/dbConfig');
 
-const getKeys = () => {
+const get = () => {
     return db('keys');
 }
 
-const addKey = async (key) => {
-    const [newKey] = await db('keys').insert(key, ["API_ACCESS_KEY"]);
+const add = async (key) => {
+    const [newKey] = await db('keys').insert(key).returning('*');
     return newKey;
 }
 
-const editKey = async (id, key) => {
-    return db('keys').where('key_id', id).update(key);
+const edit = (id, key) => {
+    return db('keys').where('key_id', id).update(key).returning('*');
 }
 
-module.exports = { getKeys, addKey, editKey };
+module.exports = { get, add, edit };

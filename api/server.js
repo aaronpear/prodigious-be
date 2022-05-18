@@ -1,11 +1,14 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const keysRouter = require('./keys/router');
 
 const server = express();
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+
+server.use('/keys', keysRouter);
 
 server.use((err, req, res, next) => { // eslint-disable-line
     res.status(err.status || 500).json({
