@@ -1,7 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const keysRouter = require('./keys/router');
 const tcgPlayerRouter = require('./tcgPlayer/router');
 
 const server = express();
@@ -9,7 +8,6 @@ server.use(express.json());
 server.use(helmet());
 server.use(cors());
 
-server.use('/keys', keysRouter);
 server.use('/tcgPlayer', tcgPlayerRouter);
 
 server.use((err, req, res, next) => { // eslint-disable-line
