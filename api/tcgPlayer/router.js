@@ -1,14 +1,9 @@
-const axios = require('axios');
 const router = require('express').Router();
+const { axiosWithTCGPKey } = require('../utils/axiosWithTCGPKey');
 
 router.get('/', (req, res, next) => {
-    axios.get('https://api.tcgplayer.com/catalog/products?categoryId=63&productTypes=Cards&limit=200',
-        {
-            headers: {
-                'User-Agent': 'Prodigious',
-                'Authorization': `bearer ${process.env.API_ACCESS_KEY}`
-            }
-        })
+    axiosWithTCGPKey()
+        .get('/catalog/products?categoryId=63&productTypes=Cards&limit=200')
         .then((response) => {
             res.status(200).json(response.data);
         })
