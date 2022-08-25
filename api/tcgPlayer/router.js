@@ -3,7 +3,7 @@ const { axiosWithTCGPKey } = require('../utils/axiosWithTCGPKey');
 
 router.get('/', (req, res, next) => {
     axiosWithTCGPKey()
-        .get('/catalog/products?categoryId=63&productTypes=Cards&limit=200')
+        .get('/catalog/products?categoryId=63&getExtendedFields=true&productTypes=Cards&limit=50')
         .then((response) => {
             res.status(200).json(response.data);
         })
